@@ -1,5 +1,5 @@
 
-DZEN_workspaces="dzen2 -ta l -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x 0 -y 0 -h 16 -e 'onstart=lower'"
+DZEN_workspaces="dzen2 -ta l -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x 0 -y 0 -h 16 -w 120 -e 'onstart=lower'"
 output_workspaces="initializing..."
 
 function render_workspaces ()
@@ -13,11 +13,11 @@ function render_workspaces ()
 
 function workspaces_bot ()
 {
+    trap exit USR1
     while true; do
         echo "$output_workspaces"
         read workspaces || break
         render_workspaces "$workspaces"
     done | $DZEN_workspaces
-    echo snif
 }
 

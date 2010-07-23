@@ -25,10 +25,11 @@ function bot_fallback ()
 # Restart function {{{
 function bot_restart ()
 {
-    echo "[statusbot] Got reloading signal, killing subprocesses..."
+    echo "[statusbot] Got reloading signal, waiting for subprocesses to die..."
     bot_terminate
+    wait
     echo "[statusbot] rebooting..."
-    $BotPath/statusbot.sh &
+    $BotPath/statusbot.sh <&0 &
     exit 0
 }
 # }}}
@@ -37,7 +38,6 @@ function bot_restart ()
 function bot_terminate ()
 {
     trap - USR1 ERR KILL TERM
-    #kill -15 $WORKSPACES_BOT_PID
 }
 # }}}
 
