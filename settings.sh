@@ -22,5 +22,6 @@ Width_1=1024
 Height_1=768
 
 ### Modules ##################################################################
+source $ModulePath/date.sh
 source $ModulePath/workspaces.sh
 

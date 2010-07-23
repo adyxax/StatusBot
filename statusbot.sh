@@ -45,8 +45,8 @@ trap bot_terminate KILL TERM
 trap bot_restart USR1
 trap bot_fallback ERR
 
-# Spawning workspaces bot
 coproc WORKSPACES_BOT { workspaces_bot; }
+date_bot &
 
 while true; do
     if read -t 185 workspaces; then
