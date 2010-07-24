@@ -4,7 +4,7 @@ DZEN_date="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x 
 
 function date_bot ()
 {
-    trap exit USR1
+    trap exit USR1 TERM KILL
     if [ "$OS" == "OpenBSD" ]; then
         Check_AC='local GRAOU=$(sysctl -n hw.sensors.acpiac0.indicator0); echo ${GRAOU%% *}'
     fi

@@ -2,6 +2,8 @@
 set -eu
 
 # First we perform some initialisations
+trap "rm -f /tmp/statusbot.pid" EXIT
+echo $$ > /tmp/statusbot.pid
 BotPath="$HOME/prog/statusbot"
 OS=$(uname -s)
 # Then, we kill any remnent of dzen bar
@@ -25,11 +27,8 @@ function bot_fallback ()
 # Restart function {{{
 function bot_restart ()
 {
-    echo "[statusbot] Got reloading signal, waiting for subprocesses to die..."
-    bot_terminate
-    wait
     echo "[statusbot] rebooting..."
-    $BotPath/statusbot.sh <&0 &
+    trap 'exec $BotPath/statusbot.sh' EXIT
     exit 0
 }
 # }}}
@@ -37,7 +36,7 @@ function bot_restart ()
 # Terminate function {{{
 function bot_terminate ()
 {
-    trap - USR1 ERR KILL TERM
+    exit 0
 }
 # }}}
 
@@ -45,13 +44,10 @@ trap bot_terminate KILL TERM
 trap bot_restart USR1
 trap bot_fallback ERR
 
-coproc WORKSPACES_BOT { workspaces_bot; }
+coproc WorkspaceBot { workspaces_bot; }
 date_bot &
 
-while true; do
-    if read -t 185 workspaces; then
-        echo "$workspaces" >&${WORKSPACES_BOT[1]}
-    fi
+while read workspaces; do
+    echo "$workspaces" >&${WorkspaceBot[1]}
 done
-trap - USR1 ERR KILL TERM
 
