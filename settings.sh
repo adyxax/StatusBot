@@ -12,6 +12,10 @@ UrgentBGColor=$NormalBGColor
 HiddenNoWFGColor="#555555"
 HiddenNoWBGColor=$NormalBGColor
 
+### Icons ####################################################################
+PicAC="^i($BotPath/icons/power-ac.xbm)"
+PicNOAC="^i($BotPath/icons/power-bat.xbm)"
+
 ### Misc #####################################################################
 BitmapsDir="/home/julien/config/dzen2"
 Font="-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-1"

@@ -3,7 +3,7 @@ set -eu
 
 # First we perform some initialisations
 BotPath="$HOME/prog/statusbot"
-
+OS=$(uname -s)
 # Then, we kill any remnent of dzen bar
 [[ -n "$(pgrep -U julien dzen)" ]] && pkill -U julien dzen || true
 # Then we source the settings file
