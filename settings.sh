@@ -27,6 +27,7 @@ Height_1=768
 
 ### Modules ##################################################################
 source $ModulePath/workspaces.sh
+source $ModulePath/ac.sh
 source $ModulePath/date.sh
 source $ModulePath/trayer.sh
 

@@ -27,6 +27,7 @@ trap bot_restart USR1
 coproc WorkspaceBot { workspaces_bot; }
 trayer_bot &
 date_bot &
+ac_bot &
 
 while read workspaces; do
     echo "$workspaces" >&${WorkspaceBot[1]}
