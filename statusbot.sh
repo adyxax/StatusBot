@@ -2,12 +2,13 @@
 set -eu
 
 # First we perform some initialisations
+BotPath="$HOME/prog/statusbot"
 trap "rm -f /tmp/statusbot.pid" EXIT
 echo $$ > /tmp/statusbot.pid
-BotPath="$HOME/prog/statusbot"
 OS=$(uname -s)
-# Then, we kill any remnent of dzen bar
-[[ -n "$(pgrep -U julien dzen)" ]] && pkill -U julien dzen || true
+# Then, we kill any remnent of dzen bar or stalonetray
+[[ -n "$(pgrep -U $UID dzen)" ]] && pkill -U julien dzen || true
+[[ -n "$(pgrep -U $UID stalonetray)" ]] && pkill -U julien stalonetray || true
 # Then we source the settings file
 source $BotPath/settings.sh
 
@@ -45,6 +46,7 @@ trap bot_restart USR1
 trap bot_fallback ERR
 
 coproc WorkspaceBot { workspaces_bot; }
+trayer_bot &
 date_bot &
 
 while read workspaces; do
