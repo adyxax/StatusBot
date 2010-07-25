@@ -15,6 +15,7 @@ HiddenNoWBGColor=$NormalBGColor
 ### Icons ####################################################################
 PicAC="^i($BotPath/icons/power-ac.xbm)"
 PicNOAC="^i($BotPath/icons/power-bat.xbm)"
+PicVolume="^i($BotPath/icons/volume.xbm)"
 
 ### Misc #####################################################################
 BitmapsDir="/home/julien/config/dzen2"
@@ -28,6 +29,7 @@ Height_1=768
 ### Modules ##################################################################
 source $ModulePath/workspaces.sh
 source $ModulePath/ac.sh
+source $ModulePath/sound.sh
 source $ModulePath/date.sh
 source $ModulePath/trayer.sh
 
