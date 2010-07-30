@@ -26,6 +26,7 @@ trap bot_restart USR1
 
 coproc WorkspaceBot { workspaces_bot; }
 network_bot &
+cpumem_bot &
 temperature_bot &
 battery_bot &
 trayer_bot &

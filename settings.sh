@@ -22,6 +22,7 @@ PicUp="^fg(orange3)^i($BotPath/icons/arr_up.xbm)^fg()"
 PicDown="^fg(#80AA83)^i($BotPath/icons/arr_down.xbm)^fg()"
 PicNetWired="^i($BotPath/icons/net-wired2.xbm)"
 PicNetWifi="^i($BotPath/icons/net-wifi.xbm)"
+PicMem="^i($BotPath/icons/mem.xbm)"
 Spc="^p(2)"
 
 ### Misc #####################################################################
@@ -41,5 +42,6 @@ source $ModulePath/date.sh
 source $ModulePath/trayer.sh
 source $ModulePath/battery.sh
 source $ModulePath/temperature.sh
+source $ModulePath/cpumem.sh
 source $ModulePath/network.sh
 
