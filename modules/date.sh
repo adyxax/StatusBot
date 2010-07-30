@@ -6,7 +6,19 @@ function date_bot ()
 {
     trap exit USR1 TERM KILL
     while true; do
-        echo "$(date +'%Y-%m-%d %H:%M')"
+        Hour=$(date +'%H')
+        if [ $Hour -ge 9 -a $Hour -lt 12 ]; then
+            Color='^fg(#20EE20)'
+        elif [ $Hour -ge 12 -a $Hour -lt 14 ]; then
+            Color='^fg(#DCA41C)'
+        elif [ $Hour -ge 14 -a $Hour -lt 18 ]; then
+            Color='^fg(#20EE20)'
+        elif [ $Hour -ge 18 -a $Hour -lt 22 ]; then
+            Color='^fg(#DCA41C)'
+        else
+            Color='^fg(#EE2020)'
+        fi
+        echo "$Color$(date +'%Y-%m-%d %H:%M')"
         sleep 1
     done | $DZEN_date
 }

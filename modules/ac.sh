@@ -10,9 +10,9 @@ function ac_bot ()
     fi
     while true; do
         if [ $(eval $Check_AC) = "On" ]; then
-            OutputAC=${PicAC}
+            OutputAC='^fg(#20EE20)'${PicAC}
         else
-            OutputAC=${PicNOAC}
+            OutputAC='^fg(#EE2020)'${PicNOAC}
         fi
         echo "$OutputAC"
         sleep 1
