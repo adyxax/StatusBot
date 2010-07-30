@@ -18,6 +18,11 @@ PicNOAC="^i($BotPath/icons/power-bat.xbm)"
 PicVolume="^i($BotPath/icons/volume.xbm)"
 PicBat="^i($BotPath/icons/power-bat2.xbm)"
 PicTemp="^i($BotPath/icons/temp.xbm)"
+PicUp="^fg(orange3)^i($BotPath/icons/arr_up.xbm)^fg()"
+PicDown="^fg(#80AA83)^i($BotPath/icons/arr_down.xbm)^fg()"
+PicNetWired="^i($BotPath/icons/net-wired2.xbm)"
+PicNetWifi="^i($BotPath/icons/net-wifi.xbm)"
+Spc="^p(2)"
 
 ### Misc #####################################################################
 BitmapsDir="/home/julien/config/dzen2"
@@ -36,4 +41,5 @@ source $ModulePath/date.sh
 source $ModulePath/trayer.sh
 source $ModulePath/battery.sh
 source $ModulePath/temperature.sh
+source $ModulePath/network.sh
 
