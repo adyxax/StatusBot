@@ -1,6 +1,6 @@
 Width_date=$((18 * 6))
 Pos_date=$(($Pos_sound - $Width_date))
-DZEN_date="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_date -y 0 -w $Width_date -h 16 -e 'onstart=lower'"
+DZEN_date="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_date -y 0 -w $Width_date -h 16 -expand l -e 'onstart=lower'"
 
 function date_bot ()
 {
