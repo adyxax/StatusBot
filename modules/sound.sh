@@ -2,12 +2,10 @@ Width_sound=23
 Pos_sound=$(($Pos_ac - $Width_sound))
 DZEN_sound="dzen2 -ta r -sa r -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_sound -y 0 -w 170 -expand l -h 16 \
 -l 1 -tw $Width_sound \
--e 'onstart=lower;\
+-e onstart=lower;\
 entertitle=uncollapse;\
 enterslave=grabkeys;leaveslave=collapse,ungrabkeys;\
-button1=menuexec;button2=togglestick;button3=exit:13;\
-button4=scrollup;button5=scrolldown;\
-key_Escape=ungrabkeys,exit'"
+button1=exec:$BotPath/modules/sound/volume_down.sh;button3=exec:$BotPath/modules/sound/volume_up.sh"
 
 function sound_bot ()
 {
