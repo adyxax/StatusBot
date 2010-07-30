@@ -10,13 +10,13 @@ function network_bot ()
             eval `ifstat -i em0,wpi0 0.1 1 | awk '/[^a-z][0-9\.]+/ {print "EM0DOWN=" $1 "; EM0UP=" $2 "; WPI0DOWN=" $3 "; WPI0UP=" $4}'`
             if [ -n "$(ifconfig em0 |grep -e 'status: active')" ]; then
                 EM0TRAF="${EM0DOWN}kB/s${PicDown} ${EM0UP}kB/s${PicUp}"
-                PCIINFO="$PicNetWired $EM0TRAF "
+                PCIINFO="^fg($CurrentFGColor)$PicNetWired^fg() $EM0TRAF "
             else
                 PCIINFO=""
             fi
             if [ -n "$(ifconfig wpi0 |grep -e 'status: active')" ]; then
                 WPI0TRAF="${WPI0DOWN}kB/s${PicDown} ${WPI0UP}kB/s${PicUp}"
-                WIFIINFO="$PicNetWifi $WPI0TRAF "
+                WIFIINFO="^fg($CurrentFGColor)$PicNetWifi^fg() $WPI0TRAF "
             else
                 WIFIINFO=""
             fi

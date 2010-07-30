@@ -16,11 +16,11 @@ function sound_bot ()
     old_volume=0
     while true; do
         new_volume=$(eval ${Get_percent})
-        echo "${PicVolume}"
+        [[ $new_volume == $old_volume ]] && { sleep 1; continue; }
+        echo "^fg($CurrentFGColor)${PicVolume}"
         VolumeBar="$(echo $new_volume |gdbar -fg ${CurrentFGColor} -bg ${CurrentBGColor} -w 100 -h 8 -sw 120 -sh 16 -nonl)"
         old_volume=$new_volume
         echo ' '$new_volume'% : - '$VolumeBar' +'
-        sleep 1
     done | $DZEN_sound
 }
 
