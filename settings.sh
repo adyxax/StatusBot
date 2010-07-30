@@ -17,6 +17,7 @@ PicAC="^i($BotPath/icons/power-ac.xbm)"
 PicNOAC="^i($BotPath/icons/power-bat.xbm)"
 PicVolume="^i($BotPath/icons/volume.xbm)"
 PicBat="^i($BotPath/icons/power-bat2.xbm)"
+PicTemp="^i($BotPath/icons/temp.xbm)"
 
 ### Misc #####################################################################
 BitmapsDir="/home/julien/config/dzen2"
@@ -34,4 +35,5 @@ source $ModulePath/sound.sh
 source $ModulePath/date.sh
 source $ModulePath/trayer.sh
 source $ModulePath/battery.sh
+source $ModulePath/temperature.sh
 

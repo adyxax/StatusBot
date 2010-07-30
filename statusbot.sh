@@ -25,6 +25,7 @@ trap 'exit 1' KILL TERM
 trap bot_restart USR1
 
 coproc WorkspaceBot { workspaces_bot; }
+temperature_bot &
 battery_bot &
 trayer_bot &
 date_bot &
