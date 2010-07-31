@@ -26,8 +26,8 @@ function cpumem_bot ()
             MEMBAR="$(echo ${MEMPCT}|gdbar -fg ${MEMCOLOUR} -bg '#37383a' -w 100 -h 6 -sh 16 -nonl)"
         fi
         echo "^fg(${MEMCOLOUR})$MEMPCT"'% '$PicMem
-        echo "RAM  : ^fg(${MEMCOLOUR})$MEMPCT"'% '$MEMBAR
-        echo "SWAP : "
+        echo " RAM  : ^fg(${MEMCOLOUR})$MEMPCT"'% '$MEMBAR
+        echo " SWAP : "
         sleep 2
     done | $DZEN_cpumem
 }
