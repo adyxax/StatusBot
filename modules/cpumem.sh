@@ -1,6 +1,6 @@
 Width_cpumem=$((6 * 4 + 23))
 Pos_cpumem=$(($Pos_temperature - $Width_cpumem))
-DZEN_cpumem="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_cpumem -y 0 -w $((120 + 6 * 10)) -h 16 -expand l \
+DZEN_cpumem="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_cpumem -y 0 -w $((120 + 6 * 10)) -h 16 \
 -l 2 -tw $Width_cpumem \
 -e onstart=lower;\
 entertitle=uncollapse;\

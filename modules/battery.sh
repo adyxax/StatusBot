@@ -1,6 +1,6 @@
 Width_battery=$((6 * 4 + 23))
 Pos_battery=$(($Pos_trayer - $Width_battery - 6))
-DZEN_battery="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_battery -y 0 -w $Width_battery -h 16 -expand l -e 'onstart=lower'"
+DZEN_battery="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_battery -y 0 -w $Width_battery -h 16 -expand l"
 
 function battery_bot ()
 {

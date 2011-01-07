@@ -1,6 +1,6 @@
 Width_temperature=$((6 * 3 + 23))
 Pos_temperature=$(($Pos_battery - $Width_temperature))
-DZEN_temperature="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_temperature -y 0 -w $Width_temperature -h 16 -expand l -e 'onstart=lower'"
+DZEN_temperature="dzen2 -ta r -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_temperature -y 0 -w $Width_temperature -h 16 -expand l"
 
 function temperature_bot ()
 {

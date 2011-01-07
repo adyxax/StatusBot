@@ -1,5 +1,5 @@
 
-DZEN_background="dzen2 -ta l -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x 0 -y 0 -h 16 -w $Width_1 -e 'onstart=lower'"
+DZEN_background="dzen2 -ta l -sa l -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x 0 -y 0 -h 16 -w $Width_1"
 
 function background_bot ()
 {
