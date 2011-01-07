@@ -35,6 +35,7 @@ Width_1=1024
 Height_1=768
 
 ### Modules ##################################################################
+source $ModulePath/background.sh
 source $ModulePath/workspaces.sh
 source $ModulePath/ac.sh
 source $ModulePath/sound.sh

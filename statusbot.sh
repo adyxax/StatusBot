@@ -24,6 +24,8 @@ function bot_restart ()
 trap 'exit 1' KILL TERM
 trap bot_restart USR1
 
+background_bot &
+sleep .2
 coproc WorkspaceBot { workspaces_bot; }
 network_bot &
 cpumem_bot &
