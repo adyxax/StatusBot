@@ -20,15 +20,18 @@ function battery_bot ()
             BAT_CURRENT=${SYSCTL2}
 
             BAT_PERC=`echo "100 * ${BAT_CURRENT} / ${BAT_FULL}" | bc`
-            if [ ${BAT_PERC} -gt 50 ]; then
-                BAT='^fg(#20EE20)'${BAT_PERC}"%"
-            elif [ ${BAT_PERC} -gt 20 ]; then
-                BAT='^fg(#DCA41C)'${BAT_PERC}"%"
-            else
-                BAT='^fg(#EE2020)'${BAT_PERC}"%"
-            fi
-            echo "$BAT $PicBat"
+        else
+            BAT_PERC="$(acpi -b | sed -r 's/^.*, ([0-9]+)%,.*$/\1/')"
         fi
+
+        if [ ${BAT_PERC} -gt 50 ]; then
+            BAT='^fg(#20EE20)'${BAT_PERC}"%"
+        elif [ ${BAT_PERC} -gt 20 ]; then
+            BAT='^fg(#DCA41C)'${BAT_PERC}"%"
+        else
+            BAT='^fg(#EE2020)'${BAT_PERC}"%"
+        fi
+        echo "$BAT $PicBat"
         sleep 10
     done | $DZEN_battery
 }
