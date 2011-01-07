@@ -9,16 +9,19 @@ function temperature_bot ()
         if [ "$OS" == "OpenBSD" ]; then
             CELCIUS=$(sysctl -n hw.sensors.cpu0.temp0)
             Celcius=${CELCIUS%%.*}
-            if [ $Celcius -le 54 ]; then
-                Output='^fg(#20EE20)'${Celcius}
-            elif [ $Celcius -le 62 ]; then
-                Output='^fg(#DCA41C)'${Celcius}
-            else
-                Output='^fg(#EE2020)'${Celcius}
-            fi
+        else
+            Celcius=$(acpi -t | tail -n1 | sed -r 's/^.*, ([0-9]+)..*$/\1/')
+        fi
+
+        if [ $Celcius -le 54 ]; then
+            Output='^fg(#20EE20)'${Celcius}
+        elif [ $Celcius -le 62 ]; then
+            Output='^fg(#DCA41C)'${Celcius}
+        else
+            Output='^fg(#EE2020)'${Celcius}
         fi
         echo $Output $PicTemp
-        sleep 3
+        sleep 2
     done | $DZEN_temperature
 }
 
