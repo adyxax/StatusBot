@@ -5,7 +5,7 @@ function background_bot ()
 {
     trap exit USR1 TERM KILL
     while true; do
-        sleep 3600
+        sleep 5
     done | $DZEN_background
 }
 
