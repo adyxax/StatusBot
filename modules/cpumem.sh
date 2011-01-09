@@ -45,7 +45,7 @@ function cpumem_bot ()
         fi
         SWAPBAR="$(echo ${SWAPPCT}|gdbar -fg ${SWAPCOLOUR} -bg '#37383a' -w 100 -h 6 -sh 16 -nonl)"
 
-        echo "^fg(${MEMCOLOUR})$MEMPCT"'% '$PicMem
+        echo "^tw()^fg(${MEMCOLOUR})$MEMPCT"'% '$PicMem
         echo " RAM  : ^fg(${MEMCOLOUR})$MEMPCT"'% '$MEMBAR
         echo " SWAP : ^fg(${SWAPCOLOUR})$SWAPPCT"'% '$SWAPBAR
         sleep 2
