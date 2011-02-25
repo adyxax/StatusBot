@@ -22,14 +22,14 @@ function network_bot ()
             fi
         else
             if [ -n "$(ifconfig eth0 |grep -e 'inet addr')" ]; then
-                eval `ifstat eth0 | grep eth0 | awk '/[^a-z][0-9\.]+/ {print "EM0DOWN=" $6 "; EM0UP=" $8 "}'`
+                eval `ifstat eth0 | awk '/^eth0/ {print "EM0DOWN=" $6 "; EM0UP=" $8 ""}'`
                 EM0TRAF="$((EM0DOWN / 1024))kB/s${PicDown} $((EM0UP / 1024))kB/s${PicUp}"
                 PCIINFO="^fg($CurrentFGColor)$PicNetWired^fg() $EM0TRAF"
             else
                 PCIINFO=""
             fi
             if [ -n "$(ifconfig wlan0 |grep -e 'inet addr')" ]; then
-                eval `ifstat wlan0 | grep wlan0 | awk '/[^a-z][0-9\.]+/ {print "WPI0DOWN=" $6 "; WPI0UP=" $8 ""}'`
+                eval `ifstat wlan0 | awk '/^wlan0/ {print "WPI0DOWN=" $6 "; WPI0UP=" $8 ""}'`
                 WPI0TRAF="$((WPI0DOWN / 1024))kB/s${PicDown} $((WPI0UP / 1024))kB/s${PicUp}"
                 WIFIINFO="^fg($CurrentFGColor)$PicNetWifi^fg() $WPI0TRAF"
             else
