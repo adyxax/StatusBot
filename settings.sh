@@ -37,6 +37,7 @@ Height_1=768
 ### Modules ##################################################################
 source $ModulePath/background.sh
 source $ModulePath/workspaces.sh
+source $ModulePath/title.sh
 source $ModulePath/ac.sh
 source $ModulePath/sound.sh
 source $ModulePath/date.sh

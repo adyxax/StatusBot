@@ -11,48 +11,49 @@ OS=$(uname -s)
 [[ -n "$(pgrep -U $UID stalonetray)" ]] && pkill -9 -U julien stalonetray || true
 # Then we source the settings file
 source $BotPath/settings.sh
-sons=()
 
 # Restart function {{{
+sons=()
 function bot_restart ()
 {
     echo "[statusbot] rebooting..."
     for son in ${sons[@]}
     do
-        kill -9 $son
+        kill -9 $son || true
     done
     trap 'exec $BotPath/statusbot.sh' EXIT
     exit 0
 }
 # }}}
 
+# Spawn function {{{
+function spawn ()
+{
+    eval "$@" &
+    sons[${#sons[@]}]="$!"
+}
+# }}}
 
 trap 'exit 1' KILL TERM
 trap bot_restart USR1
 
-background_bot &
-sons[${#sons[@]}]="$!"
-sleep .2
-coproc WorkspaceBot { workspaces_bot; }
-sons[${#sons[@]}]="$WorkspaceBot_PID"
-network_bot &
-sons[${#sons[@]}]="$!"
-cpumem_bot &
-sons[${#sons[@]}]="$!"
-temperature_bot &
-sons[${#sons[@]}]="$!"
-battery_bot &
-sons[${#sons[@]}]="$!"
-trayer_bot &
-sons[${#sons[@]}]="$!"
-date_bot &
-sons[${#sons[@]}]="$!"
-sound_bot &
-sons[${#sons[@]}]="$!"
-ac_bot &
-sons[${#sons[@]}]="$!"
+# Spawning modules
+#spawn background_bot
+#sleep .5
+spawn workspaces_bot
+spawn title_bot
+spawn network_bot
+spawn cpumem_bot
+spawn temperature_bot
+spawn battery_bot
+spawn trayer_bot
+spawn date_bot
+spawn sound_bot
+spawn ac_bot
 
-while read workspaces; do
-    echo "$workspaces" >&${WorkspaceBot[1]}
-done
+[[ -p "/tmp/statusbot.cli" ]] || mkfifo "/tmp/statusbot.cli" || true
+while true; do
+    read
+    echo "graou"
+done <"/tmp/statusbot.cli"
 
