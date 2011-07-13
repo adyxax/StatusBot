@@ -38,8 +38,6 @@ trap 'exit 1' KILL TERM
 trap bot_restart USR1
 
 # Spawning modules
-#spawn background_bot
-#sleep .5
 spawn workspaces_bot
 spawn title_bot
 spawn network_bot
