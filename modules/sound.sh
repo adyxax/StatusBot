@@ -6,14 +6,9 @@ DZEN_sound="dzen2 -ta r -sa r -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x
 function sound_bot ()
 {
     trap exit USR1 TERM KILL
-    if [ "$OS" == "OpenBSD" ]; then
-        Get_percent='local GRAOU=$(mixerctl -n outputs.master); UGUU=${GRAOU/,*/}; expr $UGUU \* 100 / 255'
-    else
-        Get_percent='local GRAOU=$(ossmix vmix0-outvol | sed -r '"'"'s/^.*to ([0-9]+)\..*$/\1/'"'"'); expr "$GRAOU" \* 4'
-    fi
     old_volume=0
     while true; do
-        new_volume="$(eval ${Get_percent})"
+        new_volume=`ossmix vmix0-outvol | awk '{ total = $10 * 4; print total }'`
         [[ "${new_volume}" == "${old_volume}" ]] && { sleep 1; continue; } || old_volume="${new_volume}"
         echo "^fg($CurrentFGColor)${new_volume}% ${PicVolume}"
     done | $DZEN_sound
