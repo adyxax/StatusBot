@@ -30,9 +30,7 @@ BitmapsDir="/home/julien/config/dzen2"
 Font="-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-1"
 
 ### Display caracteristics ###################################################
-Screens=1
-Width_1=1024
-Height_1=768
+eval `xrandr | awk '/current/ { printf("Width_1=%d; Height_1=%d\n", $8, $10) }'`
 
 ### Modules ##################################################################
 source $ModulePath/workspaces.sh
