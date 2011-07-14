@@ -1,10 +1,7 @@
-Width_sound=23
+Width_sound=$((6 * 5 + 23))
 Pos_sound=$(($Pos_ac - $Width_sound))
-DZEN_sound="dzen2 -ta r -sa r -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_sound -y 0 -w 170 -expand l -h 16 \
--l 1 -tw $Width_sound \
--e entertitle=uncollapse;\
-enterslave=grabkeys;leaveslave=collapse,ungrabkeys;\
-button1=exec:$BotPath/modules/sound/volume_down.sh;button3=exec:$BotPath/modules/sound/volume_up.sh"
+DZEN_sound="dzen2 -ta r -sa r -fg $NormalFGColor -bg $NormalBGColor -fn $Font -x $Pos_sound -y 0 -w $Width_sound -expand l -h 16 \
+-e entertitle=grabkeys;leavetitle=ungrabkeys;button1=exec:$BotPath/modules/sound/volume_down.sh;button3=exec:$BotPath/modules/sound/volume_up.sh"
 
 function sound_bot ()
 {
@@ -17,11 +14,8 @@ function sound_bot ()
     old_volume=0
     while true; do
         new_volume="$(eval ${Get_percent})"
-        [[ "${new_volume}" == "${old_volume}" ]] && { sleep 1; continue; }
-        echo "^fg($CurrentFGColor)${PicVolume}"
-        VolumeBar="$(echo ${new_volume} |gdbar -fg ${CurrentFGColor} -bg ${CurrentBGColor} -w 100 -h 8 -sw 120 -sh 16 -nonl)"
-        old_volume="${new_volume}"
-        echo ' '${new_volume}'% : - '${VolumeBar}' +'
+        [[ "${new_volume}" == "${old_volume}" ]] && { sleep 1; continue; } || old_volume="${new_volume}"
+        echo "^fg($CurrentFGColor)${new_volume}% ${PicVolume}"
     done | $DZEN_sound
 }
 
