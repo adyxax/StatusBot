@@ -21,8 +21,7 @@ function bot_restart ()
     do
         kill -9 $son || true
     done
-    trap 'exec $BotPath/statusbot.sh' EXIT
-    exit 0
+    exec $BotPath/statusbot.sh
 }
 # }}}
 
@@ -35,7 +34,6 @@ function spawn ()
 # }}}
 
 trap 'exit 1' KILL TERM
-trap bot_restart USR1
 
 # Spawning modules
 spawn workspaces_bot
@@ -49,9 +47,12 @@ spawn date_bot
 spawn sound_bot
 spawn ac_bot
 
-[[ -p "/tmp/statusbot.cli" ]] || mkfifo "/tmp/statusbot.cli" || true
+[[ -p "/tmp/statusbot.cli" ]] || (rm -f /tmp/statusbot.cli && mkfifo "/tmp/statusbot.cli") || true
 while true; do
-    read
-    echo "graou"
+    read cmd
+    case $cmd in
+        "reboot") bot_restart;;
+        *) echo "$cmd: invalid command";;
+    esac
 done <"/tmp/statusbot.cli"
 
